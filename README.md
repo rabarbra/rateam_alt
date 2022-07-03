@@ -1,0 +1,1 @@
+Rate.am alternative

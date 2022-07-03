@@ -1,0 +1,38 @@
+services:
+  web_frontend:
+    build:
+      context: ./web_frontend
+      target: development
+    networks:
+      - client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web_frontend/src:/code/src:ro
+
+  postgres:
+    image: postgres
+    restart: always
+    networks:
+      - server
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    networks:
+      - client
+      - server
+    volumes:
+      - ./backend/src:/code/src
+    depends_on:
+      - postgres
+
+networks:
+  client: {}
+  server: {}
+
+volumes:
+  db_data: {}
