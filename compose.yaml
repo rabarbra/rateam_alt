@@ -8,11 +8,13 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./web_frontend/src:/code/src:ro
+      - ./web_frontend/rateam_alt/src:/code/src:ro
 
   postgres:
     image: postgres
     restart: always
+    environment:
+      - POSTGRES_PASSWORD=test
     networks:
       - server
     ports:
