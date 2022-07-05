@@ -1,9 +1,8 @@
 FROM node:lts AS development
 
 WORKDIR /code
-COPY rateam_alt/package.json rateam_alt/package-lock.json /code/
-RUN npm ci
 COPY ./rateam_alt /code/
+RUN npm ci
 CMD ["npm", "start"]
 
 FROM development AS builder

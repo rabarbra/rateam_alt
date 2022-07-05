@@ -11,7 +11,7 @@ services:
       - ./web_frontend/rateam_alt/src:/code/src:ro
 
   postgres:
-    image: postgres
+    image: postgres:14.4-alpine
     restart: always
     environment:
       - POSTGRES_PASSWORD=test
@@ -27,6 +27,8 @@ services:
     networks:
       - client
       - server
+    ports:
+      - 80:80
     volumes:
       - ./backend/src:/code/src
     depends_on:
